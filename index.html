@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Tip Calc</title>
+</head>
+
+<body>
+    <div class="container">
+        <label>Total</label><br>
+        <input type="number" id="input-bill" name="input-bill"><br><br>
+
+        <label>Tip Percent</label><br>
+        <input type="number" id="input-tip" name="input-tip"><br><br>
+
+        <label>Party Number</label><br>
+        <input type="number" id="input-people" name="input-people"><br><br>
+
+        <div>
+            Tip Total
+            <h6 id="display-tip"></h6><br>
+        </div>
+
+        <div>
+            Bill Total
+          <h6 id="display-total"></h6><br>
+        </div>
+
+        <div>
+            Each Total
+            <h6 id="display-each"></h6><br>
+        </div>
+
+    </div>
+
+    <script>
+
+        const inputBill = document.getElementById('input-bill')
+        const inputTip = document.getElementById('input-tip')
+        const inputPeople = document.getElementById('input-people')
+
+        const displayTip = document.getElementById("display-tip")
+        const displayTotal = document.getElementById("display-total")
+        const displayEach = document.getElementById("display-each")
+
+        inputBill.addEventListener('change', handleBill)
+        inputTip.addEventListener('change', handleBill)
+        inputPeople.addEventListener('change', handleBill)
+
+        function handleBill() {
+            const bill = parseInt(inputBill.value) // parseInt to get the number only and not a string
+            const percent = parseInt(inputTip.value)
+            const people = parseInt(inputPeople.value)
+
+            const tip = bill * percent / 100
+            const total = bill + tip
+            const per_person = total / people
+            
+            displayTip.innerHTML = "$" + tip.toFixed(2)
+            displayTotal.innerHTML = "$" + total.toFixed(2)
+            displayEach.innerHTML = "$" + per_person.toFixed(2)
+        }
+
+    </script>
+    
+</body>
+</html>
